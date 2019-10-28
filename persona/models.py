@@ -37,8 +37,3 @@ class Consulta(models.model):
     sintomas = models.TextField()
     observaciones = models.TextField()
     
-
-
-
-
-class HistorialConsulta(models.model):

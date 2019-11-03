@@ -32,8 +32,12 @@ class Animal(models.Model):
     def __str__(self):
         return self.nombreAnimal
 
-class Consulta(models.model):
-    fechaConsulta = models.DateField()
+class Consulta(models.Model):
     sintomas = models.TextField()
     observaciones = models.TextField()
-    
+    diagnostico = models.TextField()
+
+class Historial(models.Model):
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
+    fechaConsulta = models.DateField('Fecha Consulta')

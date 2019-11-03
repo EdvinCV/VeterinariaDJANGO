@@ -1,0 +1,10 @@
+{% extends 'persona/base.html' %}
+{% block content %}
+  {% for persona in personas %}
+  <div class="post">
+      <h2><a href="{% url 'detalle_persona' pk=persona.pk %}">{{persona.nombre}} {{persona.apellido}}</a></h2>
+      <h2>Teléfono: {{persona.telefono}}</h2>
+      <h2>Dirección: {{persona.direccion}}</h2>
+  </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'persona/base.html' %}
+
+{% block content %}
+        <div class="card-header">
+            Información 
+        </div>
+        <div class="card-body">
+                <h5 class="card-title">{{ persona.nombre }} {{ persona.apellido }}</h5>
+                <p class="card-text"><p>Teléfono: {{persona.telefono}} - Dirección: {{persona.direccion}}</p></p>
+        </div>
+ 
+
+{% endblock %}

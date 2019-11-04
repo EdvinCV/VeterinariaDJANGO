@@ -6,28 +6,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+
   <link rel="stylesheet" href="{% static 'css/general.css' %}">
 </head>
 <html>
     <head>
-        <title>Django Girls blog</title>
+        <title>Veterinaria Django</title>
     </head>
     <body>
-        <div class="page-header">
-            <h1><a href="/">Veterinaria Django</a></h1>
-            <br>
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <a class="navbar-brand" href="#">Barra Principal</a>
+                  <a class="navbar-brand" href="#">Veterinaria Django</a>
                 </div>
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="#">Inicio</a></li>
                   <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'lista_personas' %}">Información dueños
+                    <a class="dropdown-toggle" data-toggle="dropdown">Información dueños
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Listado dueños</a></li>
+                      <li><a href="{% url 'lista_personas' %}">Listado dueños</a></li>
                       <li><a href="{% url 'persona_new' %}">Añadir dueños</a></li>
                     </ul>
                   </li>
@@ -36,19 +36,27 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Información animales
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Listado animales</a></li>
-                      <li><a href="#">Añadir animal</a></li>
+                      <li><a href="{% url 'lista_animales' %}">Listado animales</a></li>
+                      <li><a href="{% url 'animal_new' %}">Añadir animal</a></li>
                     </ul>
                   </li>
+
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url 'lista_consultas' %}">Historial de consultas</a></li>
+                        <li><a href="{% url 'consulta_new' %}">Nueva consulta</a></li>
+                      </ul>
+                    </li>
                   
                 </ul>
               </div>
             </nav>
-        </div>
         
-
-        <div class="content container">
-          <div class="row">
+        <br><br><br>
+        <div class="container">
+          <div class="row justify-content-center">
             <div>
               {%  block content %}
               {%  endblock %}

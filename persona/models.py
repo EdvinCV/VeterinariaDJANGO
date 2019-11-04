@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 class Persona(models.Model):
@@ -22,6 +23,7 @@ class TipoAnimal(models.Model):
 #Modelo de animal
 class Animal(models.Model):
     idTipoAnimal = models.OneToOneField(TipoAnimal, on_delete = models.CASCADE)
+    idDueno = models.OneToOneField(Persona, on_delete = models.CASCADE, null = True)
     nombreAnimal = models.CharField(max_length=50)
     fechaNacimiento = models.DateField('Fecha de Nacimiento')
     raza = models.CharField(max_length=50)
@@ -31,13 +33,38 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.nombreAnimal
+    
+class Medicina(models.Model):
+    nombreMedicamento = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombreMedicamento
+
 
 class Consulta(models.Model):
+    idAnimal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     sintomas = models.TextField()
     observaciones = models.TextField()
     diagnostico = models.TextField()
+    fechaConsulta = models.DateField('Fecha Consulta:', null=True)
+    receta = models.ManyToManyField(Medicina, through='Medicacion')
 
-class Historial(models.Model):
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+
+class Medicacion(models.Model):
+    medicina = models.ForeignKey(Medicina, on_delete=models.CASCADE)
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
-    fechaConsulta = models.DateField('Fecha Consulta')
+
+class MedicacionInLine(admin.TabularInline):
+    model = Medicacion
+    extra = 1
+
+class ConsultaAdmin(admin.ModelAdmin):
+    inlines = (MedicacionInLine,)
+
+class MedicinaAdmin(admin.ModelAdmin):
+    inlines = (MedicacionInLine,)
+
+
+    
+
+

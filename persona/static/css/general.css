@@ -1,8 +1,35 @@
+body{
+    background-color: #cdebff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='Artboard-5' fill='%239C92AC' fill-opacity='0.18' fill-rule='nonzero'%3E%3Cpath d='M6 18h12V6H6v12zM4 4h16v16H4V4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.headerCard {
+    text-align: center; 
+    color: black; 
+    background-color: #359F4A; 
+    border-radius: 10px; 
+    padding: 5px; 
+    padding-left: 10px;
+}
+
 .page-header {
     background-color: #3277B4;
     margin-top: 0;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
     padding: 20px 20px 20px 40px;
 }
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #4CAF50;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
@@ -38,13 +65,21 @@ h1, h2, h3, h4 {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 25px;
     background-color: #63ACEC;
     padding: 2px;
     padding-left: 10px;
+    border-radius: 5px;
     
 }
 
 .post h2 a, .post h2 a:visited {
     color: #000000;
+}
+
+.formulario {
+    padding: 10px;
+    border: 10px;
+    background-color: #cdebff;
+    border-radius: 10px;
 }

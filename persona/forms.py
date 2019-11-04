@@ -19,5 +19,4 @@ class ConsultaForm(forms.ModelForm):
     def __init__ (self, *args, **kwargs):
         super(ConsultaForm, self).__init__(*args, **kwargs)
         self.fields["receta"].widget = forms.widgets.CheckboxSelectMultiple()
-        self.fields["receta"].help_text = "Ingrese los medicamentes necesarios: "
         self.fields["receta"].queryset = Medicina.objects.all()

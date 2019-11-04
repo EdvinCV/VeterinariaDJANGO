@@ -9,7 +9,11 @@
                 <li class="list-group-item"><b>Síntomas:</b> {{consulta.sintomas}}</li>
                 <li class="list-group-item"><b>Observaciones:</b> {{consulta.observaciones}}</li>
                 <li class="list-group-item"><b>Diagnóstico:</b> {{consulta.diagnostico}}</li>
-                <li class="list-group-item"><b>Receta:</b> {{consulta.receta}}</li>
+                <li class="list-group-item"><b>Receta:</b>
+                     {% for medicina in consulta.receta.all %}
+                        <p>{{medicina.nombreMedicamento}}</p>
+                     {% endfor %}
+                </li>
                 
         </ul>
  

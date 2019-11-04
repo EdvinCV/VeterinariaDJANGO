@@ -2,16 +2,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from persona.models import Persona, Animal, Consulta, Medicacion, Medicina
 from .forms import PersonaForm, AnimalForm, ConsultaForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def lista_personas(request):
     personas = Persona.objects.all()
     return render(request, 'persona/lista_personas.html', {'personas':personas})
 
+@login_required
 def detalle_persona(request, pk):
     persona = get_object_or_404(Persona, pk=pk)
     return render(request, 'persona/detalle_persona.html',{'persona':persona})
 
+@login_required
 def persona_new(request):
     if request.method == "POST":
         form = PersonaForm(request.POST)
@@ -24,6 +29,7 @@ def persona_new(request):
 
     return render(request, 'persona/persona_new.html',{'form':form})
 
+@login_required
 def persona_edit(request, pk):
     persona = get_object_or_404(Persona, pk=pk)
     if request.method == "POST":
@@ -36,14 +42,17 @@ def persona_edit(request, pk):
         form = PersonaForm(instance=persona)
         return render(request, 'persona/persona_new.html',{'form':form})
 
+@login_required
 def lista_animales(request):
     animales = Animal.objects.all()
     return render(request, 'persona/lista_animales.html', {'animales':animales})
 
+@login_required
 def detalle_animal(request, pk):
     animal = get_object_or_404(Animal, pk=pk)
     return render(request, 'persona/detalle_animal.html',{'animal':animal})
 
+@login_required
 def animal_new(request):
     if request.method == "POST":
         form = AnimalForm(request.POST)
@@ -56,6 +65,7 @@ def animal_new(request):
     
     return render(request, 'persona/animal_new.html',{'form':form})
 
+@login_required
 def animal_edit(request, pk):
     animal = get_object_or_404(Animal, pk=pk)
     if request.method == "POST":
@@ -68,15 +78,17 @@ def animal_edit(request, pk):
         form = AnimalForm(instance=animal)
         return render(request, 'persona/animal_new.html',{'form':form})
 
-
+@login_required
 def lista_consultas(request):
     consultas = Consulta.objects.all()
     return render(request, 'persona/lista_consultas.html', {'consultas':consultas})
 
+@login_required
 def detalle_consulta(request, pk):
     consulta = get_object_or_404(Consulta, pk=pk)
     return render(request, 'persona/detalle_consulta.html',{'consulta':consulta})
 
+@login_required
 def consulta_new(request):
     if request.method == "POST":
         form = ConsultaForm(request.POST)
@@ -92,6 +104,7 @@ def consulta_new(request):
 
     return render(request, 'persona/consulta_new.html',{'form':form})
 
+@login_required
 def consulta_edit(request, pk):
     consulta = get_object_or_404(Consulta, pk=pk)
     if request.method == "POST":
@@ -104,5 +117,20 @@ def consulta_edit(request, pk):
         form = ConsultaForm(instance=consulta)
         return render(request, 'persona/consulta_new.html',{'form':form})
 
-    
-    
+@login_required
+def persona_delete(request, pk):
+    persona = get_object_or_404(Persona, pk=pk)
+    persona.delete()
+    return redirect('lista_personas')
+
+@login_required
+def animal_delete(request, pk):
+    animal = get_object_or_404(Animal, pk=pk)
+    animal.delete()
+    return redirect('lista_animales')
+
+@login_required
+def consulta_delete(request, pk):
+    consulta = get_object_or_404(Consulta, pk=pk)
+    consulta.delete()
+    return redirect('lista_consultas')

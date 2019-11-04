@@ -16,11 +16,13 @@
         <title>Veterinaria Django</title>
     </head>
     <body>
+
             <nav class="navbar navbar-inverse navbar-fixed-top">
               <div class="container-fluid">
                 <div class="navbar-header">
                   <a class="navbar-brand" href="#">Veterinaria Django</a>
                 </div>
+                {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="#">Inicio</a></li>
                   <li class="dropdown">
@@ -50,7 +52,17 @@
                       </ul>
                     </li>
                   
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.username }}
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                        </ul>
+                      </li>
                 </ul>
+                {% else %}
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                {% endif %}
               </div>
             </nav>
         
